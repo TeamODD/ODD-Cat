@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] float speed;
 
@@ -17,14 +17,14 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        move();
-    }
-
-    public void move()
-    {
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
+        move(h, v);
+        rotate(h, v);
+    }
 
+    public void move(float h, float v)
+    {
         /*if (h < 0)
         {
             sp.flipX = true;
@@ -55,6 +55,13 @@ public class PlayerScript : MonoBehaviour
 
         // can't escape from circle on center
         transform.position += new Vector3(h, v, 0) * speed * Time.deltaTime;
-        transform.Rotate((new Vector3(h, v, 0).normalized) * Time.deltaTime, Space.World);
+    }
+
+    void rotate(float h, float v)
+    {
+        if (h == 0 && v == 0) return;
+
+        Vector3 dir = new Vector3(v*-1, h*-1, 0).normalized;
+        transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg + 90);
     }
 }
