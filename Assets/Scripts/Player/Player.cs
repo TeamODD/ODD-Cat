@@ -8,20 +8,28 @@ public class Player : MonoBehaviour
     [SerializeField] float speed;
 
     private float h, v;
+    private bool isDash;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isDash = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isDash)
+            return;
+
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
-        move(h, v);
         rotate(h, v);
+        move(h, v);
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(dash(h, v));
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -67,12 +75,28 @@ public class Player : MonoBehaviour
         transform.position += new Vector3(h, v, 0) * speed * Time.deltaTime;
     }
 
+    private IEnumerator dash(float h, float v)
+    {
+        isDash = true;
+        Vector3 unit = new Vector3(h, v, 0).normalized;
+        float dashSpeed = 23f;
+
+        while(speed < dashSpeed)
+        {
+            transform.position += unit * dashSpeed * Time.deltaTime;
+            dashSpeed -= 0.1f;
+            yield return new WaitForEndOfFrame();
+        }
+
+        isDash = false;
+    }
+
     private void rotate(float h, float v)
     {
         if (h == 0 && v == 0) return;
         if (!isMoveKeyDown()) return;
-        Vector3 dir = new Vector3(h*-1, v, 0).normalized;
-        transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg);
+        Vector3 dir = new Vector3(v, h*-1, 0).normalized;
+        transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
     }
 
     private bool isMoveKeyDown()
