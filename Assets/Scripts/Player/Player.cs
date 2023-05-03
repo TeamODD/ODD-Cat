@@ -57,11 +57,16 @@ public class Player : MonoBehaviour
         transform.position += new Vector3(h, v, 0) * speed * Time.deltaTime;
     }
 
-    void rotate(float h, float v)
+    private void rotate(float h, float v)
     {
         if (h == 0 && v == 0) return;
+        if (!isMoveKeyDown()) return;
+        Vector3 dir = new Vector3(h*-1, v, 0).normalized;
+        transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg);
+    }
 
-        Vector3 dir = new Vector3(v*-1, h*-1, 0).normalized;
-        transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg + 90);
+    private bool isMoveKeyDown()
+    {
+        return Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
     }
 }
