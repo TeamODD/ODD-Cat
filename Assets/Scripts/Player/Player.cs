@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -21,6 +22,15 @@ public class Player : MonoBehaviour
         v = Input.GetAxis("Vertical");
         move(h, v);
         rotate(h, v);
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.CompareTag("Boolet"))
+        {
+            Destroy(col.gameObject);
+            StartCoroutine(runHitEvent());
+        }
     }
 
     public void move(float h, float v)
@@ -68,5 +78,25 @@ public class Player : MonoBehaviour
     private bool isMoveKeyDown()
     {
         return Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
+    }
+
+    private IEnumerator runHitEvent()
+    {
+        for(int i=0; i<10; i++)
+        {
+            setAlpha(0.5f);
+            yield return new WaitForSeconds(0.1f);
+
+            setAlpha(1f);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
+    private void setAlpha(float a)
+    {
+        SpriteRenderer sp = GetComponent<SpriteRenderer>();
+        Color c = sp.color;
+        c.a = a;
+        sp.color = c;
     }
 }
