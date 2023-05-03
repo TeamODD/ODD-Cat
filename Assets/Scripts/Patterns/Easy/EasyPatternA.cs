@@ -14,7 +14,7 @@ namespace Pattern
         void Start()
         {
             player = GameObject.FindWithTag("Player");
-            setSpeed(10f);
+            setSimpleArrowSpeed(10f);
             StartCoroutine(runPattern());
         }
 
@@ -25,13 +25,13 @@ namespace Pattern
             
             while(0 < delay)
             {
-                createBooletFromOutside();
+                createBooletFromOutside(Camera.main.ViewportToWorldPoint(getRandomPosFromCamera()));
                 delay -= 0.02f;
                 yield return new WaitForSeconds(delay);
             }
 
-
-            yield break;
+            yield return new WaitForSeconds(5f);
+            Destroy(gameObject);
         }
 
         private Vector3 getRandomPosFromCamera()
@@ -54,13 +54,13 @@ namespace Pattern
             return v;
         }
 
-        private void createBooletFromOutside()
+        private void createBooletFromOutside(Vector3 v)
         {
-            GameObject o = Instantiate(RightArrow) as GameObject;
+            GameObject o = Instantiate(SimpleArrow) as GameObject;
             o.transform.SetParent(gameObject.transform);
-            o.transform.position = Camera.main.ViewportToWorldPoint(getRandomPosFromCamera());
-            o.GetComponent<RightArrow>().setUnit(player.transform.position);
-            o.GetComponent<RightArrow>().setSpeed(getSpeed());
+            o.transform.position = v;
+            o.GetComponent<SimpleArrow>().setUnit(player.transform.position);
+            o.GetComponent<SimpleArrow>().setSpeed(getSimpleArrowSpeed());
             o.SetActive(true);
         }
     }

@@ -6,18 +6,18 @@ namespace Pattern
 {
     public class PatternBase : MonoBehaviour
     {
-        [SerializeField] public GameObject RightArrow;
+        [SerializeField] public GameObject SimpleArrow;
 
-        private float speed;
+        private float SimpleArrowSpeed;
 
-        public void setSpeed(float s)
+        public void setSimpleArrowSpeed(float s)
         {
-            speed = s;
+            SimpleArrowSpeed = s;
         }
 
-        public float getSpeed()
+        public float getSimpleArrowSpeed()
         {
-            return speed;
+            return SimpleArrowSpeed;
         }
     }
 }

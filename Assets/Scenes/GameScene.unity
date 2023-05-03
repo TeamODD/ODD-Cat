@@ -153,7 +153,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PatternContainer: {fileID: 170511452}
-  EasyPatternA: {fileID: 8785860042112178105, guid: a8ce795435237e844abbe0daf0736dd4, type: 3}
+  patternList:
+  - {fileID: 8785860042112178105, guid: a8ce795435237e844abbe0daf0736dd4, type: 3}
+  - {fileID: 3121004978439080693, guid: 5fd4c5ecc962a8b42b9db544bb5a0635, type: 3}
 --- !u!4 &24960775
 Transform:
   m_ObjectHideFlags: 0

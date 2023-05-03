@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Boolet
 {
-    public class RightArrow : MonoBehaviour
+    public class SimpleArrow : MonoBehaviour
     {
         Vector3 unitV;
         private float speed;
