@@ -6,26 +6,31 @@ namespace Pattern
 {
     public class PatternManager : MonoBehaviour
     {
-        [SerializeField] GameObject PatternContainer;
         [SerializeField] List<GameObject> patternList;
+
+        private List<GameObject> currentPatternList;
 
         // Start is called before the first frame update
         void Start()
         {
-            StartCoroutine(run());
+            currentPatternList = new List<GameObject>();
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            if (currentPatternList.Count == 0)
+            {
+                int r = Random.Range(0, patternList.Count);
+                GameObject p = Instantiate(patternList[r]) as GameObject;
+                p.transform.SetParent(transform);
+                currentPatternList.Add(p);
+            }
         }
 
-        private IEnumerator run()
+        public void removeDestroyedPattern()
         {
-            GameObject p = Instantiate(patternList[1]) as GameObject;
-            p.transform.SetParent(PatternContainer.transform);
-            yield break;
+            currentPatternList.RemoveAt(0);
         }
     }
 }

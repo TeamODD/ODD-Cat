@@ -7,25 +7,35 @@ namespace Pattern
     public class PatternBase : MonoBehaviour
     {
         [SerializeField] public GameObject SimpleArrow;
-        private GameObject player;
-        private GameObject uiManager;
+        [SerializeField] public GameObject TwoLayerCircle;
+
+        public GameObject player;
+        public GameObject uiManager;
+        public GameObject bulletManager;
+
+        public Player playerScript;
+        public UIManager uiManagerScript;
+        public BulletManager bulletManagerScript;
         
         public void init()
         {
-            player = GameObject.FindWithTag("Player");
-            uiManager = GameObject.FindWithTag("UIManager");
+            player = GameObject.FindGameObjectWithTag("Player");
+            uiManager = GameObject.FindGameObjectWithTag("UIManager");
+            bulletManager = GameObject.FindGameObjectWithTag("BulletManager");
+
+            playerScript = player.GetComponent<Player>();
+            uiManagerScript = uiManager.GetComponent<UIManager>();
+            bulletManagerScript = bulletManager.GetComponent<BulletManager>();
         }
 
-        public GameObject getPlayer()
+        public void setSimpleArrowSpeed(float speed)
         {
-            return player;
+            bulletManagerScript.setSimpleArrowSpeed(speed);
         }
 
-        public GameObject getUIManager()
+        public void setTwoLayerCircleSpeed(float speed)
         {
-            return uiManager;
+            bulletManagerScript.setTwoLayerCircleSpeed(speed);
         }
-
-
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Boolet;
+using Bullet;
 using static Icons.Icon;
 
 namespace Pattern
@@ -12,7 +12,7 @@ namespace Pattern
         void Start()
         {
             base.init();
-            GetComponent<BooletController>().setSimpleArrowSpeed(6f);
+            setSimpleArrowSpeed(5f);
             StartCoroutine(runPattern());
         }
 
@@ -23,12 +23,16 @@ namespace Pattern
             
             while(0 < delay)
             {
-                createBooletFromOutside(Camera.main.ViewportToWorldPoint(getRandomPosFromCamera()));
+                createBullet(Camera.main.ViewportToWorldPoint(getRandomPosFromCamera()));
                 delay -= 0.02f;
                 yield return new WaitForSeconds(delay);
             }
 
             yield return new WaitForSeconds(5f);
+
+            GetComponentInParent<PatternManager>().removeDestroyedPattern();
+
+            yield return new WaitForSeconds(10f);
             Destroy(gameObject);
         }
 
@@ -52,12 +56,12 @@ namespace Pattern
             return v;
         }
 
-        private void createBooletFromOutside(Vector3 v)
+        private void createBullet(Vector3 v)
         {
             GameObject o = Instantiate(SimpleArrow) as GameObject;
-            o.transform.SetParent(gameObject.transform);
+            o.transform.SetParent(bulletManager.transform);
             o.transform.position = v;
-            o.GetComponent<SimpleArrow>().init(getPlayer().transform.position);
+            o.GetComponent<SimpleArrow>().init(player.transform.position);
             o.SetActive(true);
         }
     }

@@ -16,12 +16,18 @@ public class UIManager : MonoBehaviour
 
     private GameObject icon;
     private IconType iconType;
+    private Image backgroundImage;
+
+    void Start()
+    {
+        backgroundImage = background.GetComponent<Image>();
+    }
 
     public void show(IconType i)
     {
-        Color c = background.GetComponent<Image>().color;
+        Color c = backgroundImage.color;
         c.a = 0.3f;
-        background.GetComponent<Image>().color = c;
+        backgroundImage.color = c;
 
         if(icon != null)
         {
@@ -66,9 +72,9 @@ public class UIManager : MonoBehaviour
 
     public void hide()
     {
-        Color c = background.GetComponent<Image>().color;
+        Color c = backgroundImage.color;
         c.a = 0f;
-        background.GetComponent<Image>().color = c;
+        backgroundImage.color = c;
         icon.SetActive(false);
         icon = null;
         iconType = IconType.none;

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Boolet
   - UIManager
+  - BulletManager
   layers:
   - Default
   - TransparentFX
