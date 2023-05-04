@@ -78,15 +78,16 @@ public class Player : MonoBehaviour
 
     private IEnumerator dash(float h, float v)
     {
+        if (!isMoveKeyDown()) yield break;
         isDash = true;
         Vector3 unit = new Vector3(h, v, 0).normalized;
-        float dashSpeed = 20f;
+        float dashSpeed = 30f;
 
         while(speed < dashSpeed)
         {
             transform.position += unit * dashSpeed * Time.deltaTime;
             setPosInScreen();
-            dashSpeed -= 0.1f;
+            dashSpeed -= 180f * Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
 
