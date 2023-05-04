@@ -6,7 +6,8 @@ namespace Pattern
 {
     public class PatternManager : MonoBehaviour
     {
-        [SerializeField] List<GameObject> patternList;
+        [SerializeField] List<GameObject> easyPatternList;
+        [SerializeField] List<GameObject> normalPatternList;
 
         private List<GameObject> currentPatternList;
 
@@ -21,8 +22,8 @@ namespace Pattern
         {
             if (currentPatternList.Count == 0)
             {
-                int r = Random.Range(0, patternList.Count);
-                GameObject p = Instantiate(patternList[r]) as GameObject;
+                int r = Random.Range(0, normalPatternList.Count);
+                GameObject p = Instantiate(normalPatternList[r]) as GameObject;
                 p.transform.SetParent(transform);
                 currentPatternList.Add(p);
             }

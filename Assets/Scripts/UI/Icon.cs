@@ -10,6 +10,7 @@ namespace Icons
             pause,
             rewind,
             fastRewind,
+            fastForward,
         };
     }
 }

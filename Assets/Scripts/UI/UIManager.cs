@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject pause;
     [SerializeField] public GameObject rewind;
     [SerializeField] public GameObject fastRewind;
+    [SerializeField] public GameObject fastForward;
 
     private GameObject icon;
     private IconType iconType;
@@ -39,6 +40,8 @@ public class UIManager : MonoBehaviour
         {
             case IconType.play:
                 icon = play;
+                c.a = 0f;
+                backgroundImage.color = c;
                 break;
             case IconType.pause:
                 icon = pause;
@@ -48,6 +51,9 @@ public class UIManager : MonoBehaviour
                 break;
             case IconType.fastRewind:
                 icon = fastRewind;
+                break;
+            case IconType.fastForward:
+                icon = fastForward;
                 break;
             default:
                 icon = null;
