@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Boolet;
+using static Icons.Icon;
 
 namespace Pattern
 {
     public class EasyPatternA : PatternBase
     {
-        private GameObject player;
-
-        // Start is called before the first frame update
         void Start()
         {
-            player = GameObject.FindWithTag("Player");
-            setSimpleArrowSpeed(10f);
+            base.init();
+            GetComponent<BooletController>().setSimpleArrowSpeed(6f);
             StartCoroutine(runPattern());
         }
 
@@ -45,11 +43,11 @@ namespace Pattern
             int r = Random.Range(0, 2);
             if(r == 0)
             {
-                v = new Vector3(arr[0], arr[1], 0);
+                v = new Vector3(arr[0], arr[1], 10);
             }
             else
             {
-                v = new Vector3(arr[1], arr[0], 0);
+                v = new Vector3(arr[1], arr[0], 10);
             }
             return v;
         }
@@ -59,8 +57,7 @@ namespace Pattern
             GameObject o = Instantiate(SimpleArrow) as GameObject;
             o.transform.SetParent(gameObject.transform);
             o.transform.position = v;
-            o.GetComponent<SimpleArrow>().setUnit(player.transform.position);
-            o.GetComponent<SimpleArrow>().setSpeed(getSimpleArrowSpeed());
+            o.GetComponent<SimpleArrow>().init(getPlayer().transform.position);
             o.SetActive(true);
         }
     }

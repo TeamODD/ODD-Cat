@@ -73,17 +73,19 @@ public class Player : MonoBehaviour
 
         // can't escape from circle on center
         transform.position += new Vector3(h, v, 0) * speed * Time.deltaTime;
+        setPosInScreen();
     }
 
     private IEnumerator dash(float h, float v)
     {
         isDash = true;
         Vector3 unit = new Vector3(h, v, 0).normalized;
-        float dashSpeed = 23f;
+        float dashSpeed = 20f;
 
         while(speed < dashSpeed)
         {
             transform.position += unit * dashSpeed * Time.deltaTime;
+            setPosInScreen();
             dashSpeed -= 0.1f;
             yield return new WaitForEndOfFrame();
         }
@@ -122,5 +124,17 @@ public class Player : MonoBehaviour
         Color c = sp.color;
         c.a = a;
         sp.color = c;
+    }
+
+    private void setPosInScreen()
+    {
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+
+        if (pos.x < 0f) pos.x = 0f;
+        if (pos.x > 1f) pos.x = 1f;
+        if (pos.y < 0f) pos.y = 0f;
+        if (pos.y > 1f) pos.y = 1f;
+
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 }

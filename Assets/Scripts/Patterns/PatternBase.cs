@@ -7,17 +7,25 @@ namespace Pattern
     public class PatternBase : MonoBehaviour
     {
         [SerializeField] public GameObject SimpleArrow;
-
-        private float SimpleArrowSpeed;
-
-        public void setSimpleArrowSpeed(float s)
+        private GameObject player;
+        private GameObject uiManager;
+        
+        public void init()
         {
-            SimpleArrowSpeed = s;
+            player = GameObject.FindWithTag("Player");
+            uiManager = GameObject.FindWithTag("UIManager");
         }
 
-        public float getSimpleArrowSpeed()
+        public GameObject getPlayer()
         {
-            return SimpleArrowSpeed;
+            return player;
         }
+
+        public GameObject getUIManager()
+        {
+            return uiManager;
+        }
+
+
     }
 }

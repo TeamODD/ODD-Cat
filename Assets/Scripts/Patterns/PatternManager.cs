@@ -23,16 +23,9 @@ namespace Pattern
 
         private IEnumerator run()
         {
-            GameObject p = Instantiate(patternList[0]) as GameObject;
+            GameObject p = Instantiate(patternList[1]) as GameObject;
             p.transform.SetParent(PatternContainer.transform);
-
-            while(p != null)
-                yield return new WaitForEndOfFrame();
-            Destroy(p);
-
-            yield return new WaitForSeconds(1f);
-            p = Instantiate(patternList[1]) as GameObject;
-            p.transform.SetParent(PatternContainer.transform);
+            yield break;
         }
     }
 }

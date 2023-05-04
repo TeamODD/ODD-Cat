@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3121004978439080692}
   - component: {fileID: 8410206699372291433}
+  - component: {fileID: -1505580740649694587}
   m_Layer: 0
   m_Name: EasyPatternB
   m_TagString: Untagged
@@ -45,3 +46,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SimpleArrow: {fileID: 938734757912872248, guid: 74e2e0d00e36a0e46817a4f53112e763, type: 3}
+--- !u!114 &-1505580740649694587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3121004978439080693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2c79199e8fdc947ac5a7cee02ef53e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

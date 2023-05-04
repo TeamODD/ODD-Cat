@@ -6,7 +6,7 @@ namespace Boolet
 {
     public class SimpleArrow : MonoBehaviour
     {
-        Vector3 unitV;
+        private Vector3 dir;
         private float speed;
 
         // Start is called before the first frame update
@@ -19,17 +19,17 @@ namespace Boolet
         void Update()
         {
             move();
+            speed = transform.GetComponentInParent<BooletController>().getSimpleArrowSpeed();
         }
 
         private void move()
         {
-            if (unitV == null) return;
-            transform.position += unitV * speed * Time.deltaTime;
+            transform.position += dir * speed * Time.deltaTime;
         }
 
         private IEnumerator isMoveingOnCamera()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2f);
             Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
 
             if (pos.x < 0f || 1f < pos.x || pos.y < 0f || 1f < pos.y)
@@ -39,15 +39,16 @@ namespace Boolet
             }
         }
 
-        public void setUnit(Vector3 playerPos)
+        public void init(Vector3 targetPos)
         {
-            unitV = (playerPos - transform.position).normalized;
-            rotate(unitV);
+            setDir(targetPos);
         }
 
-        public void setSpeed(float s)
+        private void setDir(Vector3 targetPos)
         {
-            speed = s;
+            Vector3 vector = (targetPos - transform.position);
+            dir = new Vector3(vector.x, vector.y, 0).normalized;
+            rotate(dir);
         }
 
         private void rotate(Vector3 v)
