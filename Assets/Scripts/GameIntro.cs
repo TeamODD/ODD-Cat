@@ -15,6 +15,7 @@ public class GameIntro : MonoBehaviour
     [SerializeField] Image _teamodd = null;
     [SerializeField] Button _gameStartBtn = null;
     [SerializeField] Button _RankBtn = null;
+    [SerializeField] Text _titleEditer = null;
 
     bool _isIntro = false;
     // Start is called before the first frame update
@@ -27,6 +28,7 @@ public class GameIntro : MonoBehaviour
         }
         else
         {
+            _titleEditer.gameObject.SetActive(false);
             _btnStart.gameObject.SetActive(false);
             _panel.gameObject.SetActive(false);
             _teamodd.gameObject.SetActive(true);
@@ -45,6 +47,7 @@ public class GameIntro : MonoBehaviour
             // 메인화면
             _teamodd.gameObject.SetActive(true);
             _RankBtn.gameObject.SetActive(true);
+            _titleEditer.gameObject.SetActive(true);
             _gameStartBtn.gameObject.SetActive(true);
         }
     }
