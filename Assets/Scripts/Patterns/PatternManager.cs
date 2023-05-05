@@ -15,17 +15,46 @@ namespace Pattern
         void Start()
         {
             currentPatternList = new List<GameObject>();
+            StartCoroutine(betaPattern());
         }
 
         // Update is called once per frame
-        void Update()
+        /*void Update()
         {
             if (currentPatternList.Count == 0)
             {
                 int r = Random.Range(0, normalPatternList.Count);
-                GameObject p = Instantiate(normalPatternList[3]) as GameObject;
+                GameObject p = Instantiate(easyPatternList[i]) as GameObject;
                 p.transform.SetParent(transform);
                 currentPatternList.Add(p);
+            }
+        }*/
+
+        IEnumerator betaPattern()
+        {
+            for (int i = 0; i < easyPatternList.Count; i++)
+            {
+                GameObject p = Instantiate(easyPatternList[i]) as GameObject;
+                p.transform.SetParent(transform);
+                currentPatternList.Add(p);
+
+                while (currentPatternList.Count != 0)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
+            }
+
+
+            for (int i = 0; i < normalPatternList.Count; i++)
+            {
+                GameObject p = Instantiate(normalPatternList[i]) as GameObject;
+                p.transform.SetParent(transform);
+                currentPatternList.Add(p);
+
+                while (currentPatternList.Count != 0)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
             }
         }
 

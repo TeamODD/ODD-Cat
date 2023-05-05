@@ -4,10 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Boolet
   - UIManager
   - BulletManager
   - Eye
+  - Bullet
   layers:
   - Default
   - TransparentFX

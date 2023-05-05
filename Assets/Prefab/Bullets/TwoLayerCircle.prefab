@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7310945206536359124}
   m_Layer: 0
   m_Name: TwoLayerCircle
-  m_TagString: Boolet
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47fbbf99dc4dc3847a38b2cd42995420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
+  bulletManagerScript: {fileID: 0}
 --- !u!70 &-5085334795347512694
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

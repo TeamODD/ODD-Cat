@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 491602779}
   m_Layer: 0
   m_Name: SimpleArrow
-  m_TagString: Boolet
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,3 +136,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5ca454dd0a38d74b8ed6a825cd2f94e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
+  bulletManagerScript: {fileID: 0}
