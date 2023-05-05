@@ -26,7 +26,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createBullet(v1, v1 + v2);
+                createTwoLayerCircleBullet(v1, v1 + v2);
             }
             yield return new WaitForSeconds(0.3f);
 
@@ -35,7 +35,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createBullet(v1, v1 + v2);
+                createTwoLayerCircleBullet(v1, v1 + v2);
             }
             yield return new WaitForSeconds(2f);
 
@@ -44,7 +44,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createBullet(v1, v1 + v2);
+                createTwoLayerCircleBullet(v1, v1 + v2);
             }
             yield return new WaitForSeconds(0.3f);
 
@@ -53,7 +53,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createBullet(v1, v1 + v2);
+                createTwoLayerCircleBullet(v1, v1 + v2);
             }
 
             yield return new WaitForSeconds(5f);
@@ -62,15 +62,6 @@ namespace Pattern
 
             yield return new WaitForSeconds(10f);
             Destroy(gameObject);
-        }
-
-        private void createBullet(Vector3 v1, Vector3 v2)
-        {
-            GameObject o = Instantiate(TwoLayerCircle) as GameObject;
-            o.transform.SetParent(bulletManager.transform);
-            o.transform.position = v1;
-            o.GetComponent<TwoLayerCircle>().init(v2);
-            o.SetActive(true);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Pattern
             if (currentPatternList.Count == 0)
             {
                 int r = Random.Range(0, normalPatternList.Count);
-                GameObject p = Instantiate(normalPatternList[2]) as GameObject;
+                GameObject p = Instantiate(normalPatternList[3]) as GameObject;
                 p.transform.SetParent(transform);
                 currentPatternList.Add(p);
             }

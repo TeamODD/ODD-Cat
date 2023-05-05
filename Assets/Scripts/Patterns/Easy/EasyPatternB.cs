@@ -26,35 +26,35 @@ namespace Pattern
             for (x = 0.5f, y = 0f; 0 <= x; x -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createBullet(v);
+                createSimpleArrowBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.1f);
             }
 
             for (x = 0f, y = 0f; y <= 1f; y += 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createBullet(v);
+                createSimpleArrowBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.1f);
             }
 
             for (x = 0f, y = 1f; x <= 1; x += 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createBullet(v);
+                createSimpleArrowBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.1f);
             }
 
             for (x = 1f, y = 1f; 0f <= y; y -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createBullet(v);
+                createSimpleArrowBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.1f);
             }
 
             for (x = 1f, y = 0f; 0.5f <= x; x -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createBullet(v);
+                createSimpleArrowBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.1f);
             }
 
@@ -65,42 +65,42 @@ namespace Pattern
             for (x = 0.5f, y = 0f; 0 <= x; x -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createBullet(v);
+                createSimpleArrowBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 
             for (x = 0f, y = 0f; y <= 1f; y += 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createBullet(v);
+                createSimpleArrowBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 
             for (x = 0f, y = 1f; x <= 1; x += 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createBullet(v);
+                createSimpleArrowBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 
             for (x = 1f, y = 1f; 0f <= y; y -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createBullet(v);
+                createSimpleArrowBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 
             for (x = 1f, y = 0f; 0f <= x; x -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createBullet(v);
+                createSimpleArrowBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 
             for (x = 0f, y = 0f; y <= 1f; y += 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createBullet(v);
+                createSimpleArrowBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 
@@ -113,15 +113,6 @@ namespace Pattern
 
             yield return new WaitForSeconds(10f);
             Destroy(gameObject);
-        }
-
-        private void createBullet(Vector3 v)
-        {
-            GameObject o = Instantiate(SimpleArrow) as GameObject;
-            o.transform.SetParent(bulletManager.transform);
-            o.transform.position = v;
-            o.GetComponent<SimpleArrow>().init(new Vector3(0, 0, 0));
-            o.SetActive(true);
         }
     }
 }

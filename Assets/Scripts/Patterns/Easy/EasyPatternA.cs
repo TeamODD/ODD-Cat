@@ -23,7 +23,7 @@ namespace Pattern
             
             while(0 < delay)
             {
-                createBullet(Camera.main.ViewportToWorldPoint(getRandomPosFromCamera()));
+                createSimpleArrowBullet(Camera.main.ViewportToWorldPoint(getRandomPosFromCamera()), player.transform.position);
                 delay -= 0.02f;
                 yield return new WaitForSeconds(delay);
             }
@@ -54,15 +54,6 @@ namespace Pattern
                 v = new Vector3(arr[1], arr[0], 10);
             }
             return v;
-        }
-
-        private void createBullet(Vector3 v)
-        {
-            GameObject o = Instantiate(SimpleArrow) as GameObject;
-            o.transform.SetParent(bulletManager.transform);
-            o.transform.position = v;
-            o.GetComponent<SimpleArrow>().init(player.transform.position);
-            o.SetActive(true);
         }
     }
 }

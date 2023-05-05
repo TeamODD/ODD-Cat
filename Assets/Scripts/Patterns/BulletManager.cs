@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
-    private float SimpleArrowSpeed;
+    private float simpleArrowSpeed;
     private float twoLayerCircleSpeed;
 
     public void setSimpleArrowSpeed(float speed)
     {
-        SimpleArrowSpeed = speed;
+        simpleArrowSpeed = speed;
     }
 
     public float getSimpleArrowSpeed()
     {
-        return SimpleArrowSpeed;
+        return simpleArrowSpeed;
     }
 
     public void setTwoLayerCircleSpeed(float speed)
