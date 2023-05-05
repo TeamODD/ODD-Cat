@@ -7,6 +7,7 @@ TagManager:
   - Boolet
   - UIManager
   - BulletManager
+  - Eye
   layers:
   - Default
   - TransparentFX
@@ -47,11 +48,17 @@ TagManager:
   - name: Background
     uniqueID: 3991609303
     locked: 0
-  - name: Player
-    uniqueID: 2870998823
+  - name: Eye
+    uniqueID: 38558355
     locked: 0
   - name: Boolet
     uniqueID: 1882692993
+    locked: 0
+  - name: Pupil
+    uniqueID: 404690019
+    locked: 0
+  - name: Player
+    uniqueID: 2870998823
     locked: 0
   - name: UI
     uniqueID: 4169229213

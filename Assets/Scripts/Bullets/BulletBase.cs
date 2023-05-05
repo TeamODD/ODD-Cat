@@ -42,7 +42,7 @@ namespace Bullet
         {
             Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
 
-            if (pos.x < -1f || 2f < pos.x || pos.y < -1f || 2f < pos.y)
+            if (pos.x < -2f || 3f < pos.x || pos.y < -2f || 3f < pos.y)
             {
                 return false;
             }

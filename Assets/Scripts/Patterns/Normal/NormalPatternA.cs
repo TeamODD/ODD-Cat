@@ -18,7 +18,7 @@ namespace Pattern
         private IEnumerator runPattern()
         {
             yield return new WaitForSeconds(1.5f);
-            setSimpleArrowSpeed(5f);
+            setSimpleArrowSpeed(8f);
             float x, y;
 
             // first cycle
@@ -64,7 +64,7 @@ namespace Pattern
             uiManagerScript.show(IconType.pause);
             yield return new WaitForSeconds(1.5f);
 
-            setSimpleArrowSpeed(5f);
+            setSimpleArrowSpeed(8f);
             uiManagerScript.show(IconType.play);
             yield return new WaitForSeconds(3f);
             uiManagerScript.hide();
@@ -115,15 +115,11 @@ namespace Pattern
 
             // second cycle end
 
-            setSimpleArrowSpeed(0);
-            uiManagerScript.show(IconType.pause);
-            yield return new WaitForSeconds(3f);
-
-            setSimpleArrowSpeed(-5f);
+            setSimpleArrowSpeed(-8f);
             uiManagerScript.show(IconType.rewind);
             yield return new WaitForSeconds(3f);
 
-            setSimpleArrowSpeed(5f);
+            setSimpleArrowSpeed(8f);
             uiManagerScript.show(IconType.play);
             yield return new WaitForSeconds(3f);
             uiManagerScript.hide();
