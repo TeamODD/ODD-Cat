@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System;
 
+
 public class PlayerData
 {
 
@@ -25,6 +26,8 @@ public class GameMgr
     public int _Score = 0;
 
     public bool _isFirst = false;
+
+    public int _mainSoundCnt = 0;
 
     public static GameMgr GetIns
     {

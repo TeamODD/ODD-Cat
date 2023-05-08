@@ -17,14 +17,29 @@ public class GameIntro : MonoBehaviour
     [SerializeField] Button _RankBtn = null;
     [SerializeField] Text _titleEditer = null;
 
+    [SerializeField] GameObject _mainBGM = null;
+    //[SerializeField] GameObject _mainBGM = null;
+
+    private AudioSource _audioSource;
+
+
     bool _isIntro = false;
     // Start is called before the first frame update
     void Start()
     {
-        if(!GameMgr.GetIns._isFirst)
+        setMainBGM();
+        DontDestroyOnLoad(_mainBGM);
+        //_audioSource = _mainBGM.GetComponent<AudioSource>();
+        //_audioSource = _mainBGM.GetComponent<AudioSource>();
+        if(GameMgr.GetIns._mainSoundCnt == 1)
+        {
+            playMainBGM();
+        }
+        if (!GameMgr.GetIns._isFirst)
         {
             _game.SetActive(false);
             _btnStart.onClick.AddListener(onClicked_btnStart); // 인트로 버튼
+            GameMgr.GetIns._mainSoundCnt = 0;
         }
         else
         {
@@ -55,15 +70,15 @@ public class GameIntro : MonoBehaviour
     public void onClicked_RankBtn()
     {
         //GameMgr.GetIns.LoadData();
+        stopMainBGM();
         SceneManager.LoadScene("RankingScene");
     }
 
     public void onClicked_btnStart()
     {
         //Debug.Log("dd");
-
         _btnStart.GetComponent<Image>().sprite = _changeSprite;
-        
+        playMainBGM();
         StartCoroutine(introFadeOut(3.0f));
 
         //_btnStart.interactable = false;
@@ -71,6 +86,7 @@ public class GameIntro : MonoBehaviour
 
     public void onClicked_gameStartBtn()
     {
+        stopMainBGM();
         SceneManager.LoadScene("GameScene");
     }
 
@@ -106,4 +122,22 @@ public class GameIntro : MonoBehaviour
         _isIntro = true;
     }
 
+    public void setMainBGM()
+    {
+        
+        _audioSource = _mainBGM.GetComponent<AudioSource>();
+        //_audioSource.Play();
+    }
+    public void playMainBGM()
+    {
+        //_audioSource = _mainBGM.GetComponent<AudioSource>();
+
+        _audioSource.Play();
+    }
+    public void stopMainBGM()
+    {
+        //_audioSource = _mainBGM.GetComponent<AudioSource>();
+
+        _audioSource.Stop();
+    }
 }
