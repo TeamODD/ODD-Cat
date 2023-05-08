@@ -3,11 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - UIManager
-  - BulletManager
-  - Eye
-  - Bullet
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -18,7 +14,6 @@ TagManager:
   - 
   - 
   - 
-  - Boolet
   - 
   - 
   - 
@@ -30,8 +25,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Layer 1
+  - Layer 2
+  - Layer 3
   - 
   - 
   - 
@@ -45,21 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 3991609303
+  - name: Layer 1
+    uniqueID: 2425651459
     locked: 0
-  - name: Eye
-    uniqueID: 38558355
+  - name: Layer 2
+    uniqueID: 4250941897
     locked: 0
-  - name: Boolet
-    uniqueID: 1882692993
-    locked: 0
-  - name: Pupil
-    uniqueID: 404690019
-    locked: 0
-  - name: Player
-    uniqueID: 2870998823
-    locked: 0
-  - name: UI
-    uniqueID: 4169229213
+  - name: Layer 3
+    uniqueID: 4189426099
     locked: 0
