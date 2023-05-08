@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Boolet
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Boolet
   - 
   - 
   - 
@@ -42,5 +43,11 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
+    uniqueID: 3991609303
+    locked: 0
+  - name: Player
     uniqueID: 2870998823
+    locked: 0
+  - name: Boolet
+    uniqueID: 1882692993
     locked: 0
