@@ -12,7 +12,7 @@ namespace Pattern
         void Start()
         {
             base.init();
-            setSimpleArrowSpeed(5f);
+            setMushroomRSpeed(5f);
             StartCoroutine(runPattern());
         }
 
@@ -23,7 +23,7 @@ namespace Pattern
             
             while(0 < delay)
             {
-                createSimpleArrowBullet(Camera.main.ViewportToWorldPoint(getRandomPosFromCamera()), player.transform.position);
+                createMushroomRBullet(Camera.main.ViewportToWorldPoint(getRandomPosFromCamera()), player.transform.position);
                 delay -= 0.02f;
                 yield return new WaitForSeconds(delay);
             }

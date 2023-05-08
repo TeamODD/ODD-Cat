@@ -19,7 +19,7 @@ namespace Pattern
         private IEnumerator runPattern()
         {
             yield return new WaitForSeconds(1f);
-            setTwoLayerCircleSpeed(5f);
+            setMushroomYSpeed(5f);
             float x, y;
 
             // first cycle 
@@ -28,7 +28,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createTwoLayerCircleBullet(v1, v1 + v2);
+                createMushroomYBullet(v1, v1 + v2);
             }
             yield return new WaitForSeconds(0.5f);
 
@@ -37,7 +37,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createTwoLayerCircleBullet(v1, v1 + v2);
+                createMushroomYBullet(v1, v1 + v2);
             }
             yield return new WaitForSeconds(1f);
 
@@ -48,7 +48,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createTwoLayerCircleBullet(v1, v1 + v2);
+                createMushroomYBullet(v1, v1 + v2);
             }
             yield return new WaitForSeconds(0.5f);
 
@@ -57,7 +57,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createTwoLayerCircleBullet(v1, v1 + v2);
+                createMushroomYBullet(v1, v1 + v2);
             }
             yield return new WaitForSeconds(2f);
 
@@ -71,7 +71,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createTwoLayerCircleBullet(v1, v1 + v2);
+                createMushroomYBullet(v1, v1 + v2);
             }
             yield return new WaitForSeconds(2f);
 
@@ -80,7 +80,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createTwoLayerCircleBullet(v1, v1 + v2);
+                createMushroomYBullet(v1, v1 + v2);
             }
             yield return new WaitForSeconds(2f);
 
@@ -89,7 +89,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createTwoLayerCircleBullet(v1, v1 + v2);
+                createMushroomYBullet(v1, v1 + v2);
             }
             yield return new WaitForSeconds(2f);
 
@@ -98,7 +98,7 @@ namespace Pattern
             {
                 Vector3 v1 = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
                 Vector3 v2 = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-                createTwoLayerCircleBullet(v1, v1 + v2);
+                createMushroomYBullet(v1, v1 + v2);
             }
 
             yield return new WaitForSeconds(5f);
@@ -110,11 +110,11 @@ namespace Pattern
 
         private IEnumerator runFastForward()
         {
-            setTwoLayerCircleSpeed(7.5f);
+            setMushroomYSpeed(7.5f);
             uiManagerScript.show(IconType.fastForward);
             yield return new WaitForSeconds(5f);
 
-            setTwoLayerCircleSpeed(5f);
+            setMushroomYSpeed(5f);
             uiManagerScript.show(IconType.play);
             yield return new WaitForSeconds(3f);
             uiManagerScript.hide();

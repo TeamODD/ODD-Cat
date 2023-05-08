@@ -14,7 +14,12 @@ namespace Cainos.PixelArtTopDown_Basic
         private Color curColor;
         private Color targetColor;
 
-        private void OnTriggerEnter2D(Collider2D other)
+        void Start()
+        {
+            curColor = targetColor = new Color(1, 1, 1, 0);
+        }
+
+        /*private void OnTriggerEnter2D(Collider2D other)
         {
             targetColor = new Color(1, 1, 1, 1);
         }
@@ -28,6 +33,26 @@ namespace Cainos.PixelArtTopDown_Basic
         {
             curColor = Color.Lerp(curColor, targetColor, lerpSpeed * Time.deltaTime);
 
+            foreach (var r in runes)
+            {
+                r.color = curColor;
+            }
+        }*/
+
+        public void setEnable()
+        {
+            targetColor = new Color(1, 1, 1, 1);
+            curColor = Color.Lerp(curColor, targetColor, lerpSpeed * Time.deltaTime);
+            foreach (var r in runes)
+            {
+                r.color = curColor;
+            }
+
+        }
+        public void setDisable()
+        {
+            targetColor = new Color(1, 1, 1, 0);
+            curColor = Color.Lerp(curColor, targetColor, lerpSpeed * Time.deltaTime);
             foreach (var r in runes)
             {
                 r.color = curColor;

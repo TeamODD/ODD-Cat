@@ -44,10 +44,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c9b8a0741a79f45ad1508066226a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SimpleArrow: {fileID: 938734757912872248, guid: 74e2e0d00e36a0e46817a4f53112e763, type: 3}
+  SimpleArrow: {fileID: 938734757912872248, guid: 74e2e0d00e36a0e46817a4f53112e763,
+    type: 3}
+  TwoLayerCircle: {fileID: 0}
+  Triangle: {fileID: 0}
+  Circle: {fileID: 0}
+  MushroomY: {fileID: 4218177189638725688, guid: fcd0b28ed0929514b8c54768af953b2b,
+    type: 3}
+  MushroomR: {fileID: 3494805457490510254, guid: 6e8085afa2a882442a42d3154d9cc9fc,
+    type: 3}
+  Heart: {fileID: 0}
   player: {fileID: 0}
   uiManager: {fileID: 0}
   bulletManager: {fileID: 0}
+  altar: {fileID: 0}
   playerScript: {fileID: 0}
   uiManagerScript: {fileID: 0}
   bulletManagerScript: {fileID: 0}
+  altarScript: {fileID: 0}

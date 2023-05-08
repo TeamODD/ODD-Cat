@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Cainos.PixelArtTopDown_Basic;
 using Eyes;
 using Bullet;
 
@@ -13,35 +14,40 @@ namespace Pattern
         [SerializeField] public GameObject TwoLayerCircle;
         [SerializeField] public GameObject Triangle;
         [SerializeField] public GameObject Circle;
+        [SerializeField] public GameObject MushroomY;
+        [SerializeField] public GameObject MushroomR;
+        [SerializeField] public GameObject Heart;
+
 
         public GameObject player;
-        public GameObject eye;
         public GameObject uiManager;
         public GameObject bulletManager;
+        public GameObject altar;
 
-        public Eye eyeScript;
         public Player playerScript;
         public UIManager uiManagerScript;
         public BulletManager bulletManagerScript;
+        public PropsAltar altarScript;
 
         private List<GameObject> triangleList;
+        private List<GameObject> heartList;
         public readonly float[] heartSpeed = new float[34];
         public readonly float[] heartDir = new float[34];
 
         public void init()
         {
-            triangleList = new List<GameObject>();
             player = GameObject.FindGameObjectWithTag("Player");
-            eye = GameObject.FindGameObjectWithTag("Eye");
             uiManager = GameObject.FindGameObjectWithTag("UIManager");
             bulletManager = GameObject.FindGameObjectWithTag("BulletManager");
+            altar = GameObject.FindGameObjectWithTag("Altar");
 
-            eyeScript = eye.GetComponent<Eye>();
+
             playerScript = player.GetComponent<Player>();
             uiManagerScript = uiManager.GetComponent<UIManager>();
             bulletManagerScript = bulletManager.GetComponent<BulletManager>();
 
             triangleList = new List<GameObject>();
+            heartList = new List<GameObject>();
             heartDataInit();
         }
 
@@ -57,15 +63,37 @@ namespace Pattern
             }
         }
 
+        public void updateHeartList()
+        {
+            int i = 0;
+            while (i < heartList.Count)
+            {
+                if (heartList[i] == null)
+                    heartList.RemoveAt(i);
+                else
+                    i++;
+            }
+        }
+
         public void setSimpleArrowSpeed(float speed)
         {
             bulletManagerScript.setSimpleArrowSpeed(speed);
         }
-
         public void setTwoLayerCircleSpeed(float speed)
         {
             bulletManagerScript.setTwoLayerCircleSpeed(speed);
         }
+
+        public void setMushroomYSpeed(float speed)
+        {
+            bulletManagerScript.setMushroomYSpeed(speed);
+        }
+
+        public void setMushroomRSpeed(float speed)
+        {
+            bulletManagerScript.setMushroomRSpeed(speed);
+        }
+
 
         public void setTriangleSpeed(float speed)
         {
@@ -80,6 +108,14 @@ namespace Pattern
             foreach (GameObject o in triangleList) 
             {
                 o.GetComponent<Triangle>().multiplySpeed(n);
+            }
+        }
+
+        public void multiplyHeartSpeed(float n)
+        {
+            foreach (GameObject o in heartList)
+            {
+                o.GetComponent<Heart>().multiplySpeed(n);
             }
         }
 
@@ -101,6 +137,24 @@ namespace Pattern
             o.SetActive(true);
         }
 
+        public void createMushroomYBullet(Vector3 v1, Vector3 v2)
+        {
+            GameObject o = Instantiate(MushroomY) as GameObject;
+            o.transform.SetParent(bulletManager.transform);
+            o.transform.position = v1;
+            o.GetComponent<MushroomY>().init(v2);
+            o.SetActive(true);
+        }
+
+        public void createMushroomRBullet(Vector3 v1, Vector3 v2)
+        {
+            GameObject o = Instantiate(MushroomR) as GameObject;
+            o.transform.SetParent(bulletManager.transform);
+            o.transform.position = v1;
+            o.GetComponent<MushroomR>().init(v2);
+            o.SetActive(true);
+        }
+
         public void createTriangleBullet(Vector3 v1, Vector3 v2, float speed)
         {
             GameObject o = Instantiate(Triangle) as GameObject;
@@ -109,6 +163,16 @@ namespace Pattern
             o.GetComponent<Triangle>().init(v2, speed);
             o.SetActive(true);
             triangleList.Add(o);
+        }
+
+        public void createHeartBullet(Vector3 v1, Vector3 v2, float speed)
+        {
+            GameObject o = Instantiate(Heart) as GameObject;
+            o.transform.SetParent(bulletManager.transform);
+            o.transform.position = v1;
+            o.GetComponent<Heart>().init(v2, speed);
+            o.SetActive(true);
+            heartList.Add(o);
         }
 
         // Open Source

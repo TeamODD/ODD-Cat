@@ -45,10 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SimpleArrow: {fileID: 0}
-  TwoLayerCircle: {fileID: 299771714846014609, guid: 5eb02678a075869488c78e65a118c7fe, type: 3}
+  TwoLayerCircle: {fileID: 299771714846014609, guid: 5eb02678a075869488c78e65a118c7fe,
+    type: 3}
+  Triangle: {fileID: 0}
+  Circle: {fileID: 0}
+  MushroomY: {fileID: 4218177189638725688, guid: fcd0b28ed0929514b8c54768af953b2b,
+    type: 3}
+  MushroomR: {fileID: 3494805457490510254, guid: 6e8085afa2a882442a42d3154d9cc9fc,
+    type: 3}
+  Heart: {fileID: 7848955751832273305, guid: cee189c0a6f715e4abb46bca628f52a5, type: 3}
   player: {fileID: 0}
   uiManager: {fileID: 0}
   bulletManager: {fileID: 0}
+  altar: {fileID: 0}
   playerScript: {fileID: 0}
   uiManagerScript: {fileID: 0}
   bulletManagerScript: {fileID: 0}
+  altarScript: {fileID: 0}
