@@ -6,33 +6,61 @@ namespace Pattern
 {
     public class PatternManager : MonoBehaviour
     {
-        [SerializeField] GameObject PatternContainer;
-        [SerializeField] List<GameObject> patternList;
+        [SerializeField] List<GameObject> easyPatternList;
+        [SerializeField] List<GameObject> normalPatternList;
+
+        private List<GameObject> currentPatternList;
 
         // Start is called before the first frame update
         void Start()
         {
-            StartCoroutine(run());
+            currentPatternList = new List<GameObject>();
+            StartCoroutine(betaPattern());
         }
 
         // Update is called once per frame
-        void Update()
+        /*void Update()
         {
+            if (currentPatternList.Count == 0)
+            {
+                int r = Random.Range(0, normalPatternList.Count);
+                GameObject p = Instantiate(easyPatternList[i]) as GameObject;
+                p.transform.SetParent(transform);
+                currentPatternList.Add(p);
+            }
+        }*/
 
+        IEnumerator betaPattern()
+        {
+            for (int i = 0; i < easyPatternList.Count; i++)
+            {
+                GameObject p = Instantiate(easyPatternList[i]) as GameObject;
+                p.transform.SetParent(transform);
+                currentPatternList.Add(p);
+
+                while (currentPatternList.Count != 0)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
+            }
+
+
+            for (int i = 0; i < normalPatternList.Count; i++)
+            {
+                GameObject p = Instantiate(normalPatternList[i]) as GameObject;
+                p.transform.SetParent(transform);
+                currentPatternList.Add(p);
+
+                while (currentPatternList.Count != 0)
+                {
+                    yield return new WaitForSeconds(1f);
+                }
+            }
         }
 
-        private IEnumerator run()
+        public void removeDestroyedPattern()
         {
-            GameObject p = Instantiate(patternList[0]) as GameObject;
-            p.transform.SetParent(PatternContainer.transform);
-
-            while(p != null)
-                yield return new WaitForEndOfFrame();
-            Destroy(p);
-
-            yield return new WaitForSeconds(1f);
-            p = Instantiate(patternList[1]) as GameObject;
-            p.transform.SetParent(PatternContainer.transform);
+            currentPatternList.RemoveAt(0);
         }
     }
 }

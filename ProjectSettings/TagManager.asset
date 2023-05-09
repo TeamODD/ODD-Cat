@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Boolet
+  - Bullet
+  - Altar
+  - UIManager
+  - BulletManager
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,6 @@ TagManager:
   - 
   - 
   - 
-  - Boolet
   - 
   - 
   - 
@@ -27,8 +29,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Layer 1
+  - Layer 2
+  - Layer 3
   - 
   - 
   - 
@@ -43,11 +46,14 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Background
-    uniqueID: 3991609303
+    uniqueID: 3560284575
+    locked: 0
+  - name: Bullet
+    uniqueID: 3523910265
     locked: 0
   - name: Player
-    uniqueID: 2870998823
+    uniqueID: 2573064165
     locked: 0
-  - name: Boolet
-    uniqueID: 1882692993
+  - name: UI
+    uniqueID: 4294186351
     locked: 0

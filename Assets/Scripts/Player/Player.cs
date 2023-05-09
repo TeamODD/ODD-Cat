@@ -1,32 +1,59 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] float speed;
 
+    public int HP;
+
+    private UIManager uiManager;
     private float h, v;
+    private bool isDash;
+    private bool isImmuned;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+        HP = 3;
+        isDash = false;
+        isImmuned = false;
+        StartCoroutine(countScore());
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isDash)
+            return;
+
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
-        move(h, v);
         rotate(h, v);
+        move(h, v);
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(dash(h, v));
+        }
+    }
+
+    private IEnumerator countScore()
+    {
+        yield return new WaitForSeconds(1f);
+        while (0 < HP)
+        {
+            GameMgr.GetIns._Score += 10;
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.CompareTag("Boolet"))
+        if(!isImmuned && col.gameObject.CompareTag("Bullet"))
         {
             Destroy(col.gameObject);
             StartCoroutine(runHitEvent());
@@ -65,14 +92,33 @@ public class Player : MonoBehaviour
 
         // can't escape from circle on center
         transform.position += new Vector3(h, v, 0) * speed * Time.deltaTime;
+        setPosInScreen();
+    }
+
+    private IEnumerator dash(float h, float v)
+    {
+        if (!isMoveKeyDown()) yield break;
+        isDash = true;
+        Vector3 unit = new Vector3(h, v, 0).normalized;
+        float dashSpeed = 30f;
+
+        while(speed < dashSpeed)
+        {
+            transform.position += unit * dashSpeed * Time.deltaTime;
+            setPosInScreen();
+            dashSpeed -= 180f * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        isDash = false;
     }
 
     private void rotate(float h, float v)
     {
         if (h == 0 && v == 0) return;
         if (!isMoveKeyDown()) return;
-        Vector3 dir = new Vector3(h*-1, v, 0).normalized;
-        transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.x, dir.y) * Mathf.Rad2Deg);
+        Vector3 dir = new Vector3(v, h*-1, 0).normalized;
+        transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
     }
 
     private bool isMoveKeyDown()
@@ -82,7 +128,16 @@ public class Player : MonoBehaviour
 
     private IEnumerator runHitEvent()
     {
-        for(int i=0; i<10; i++)
+        uiManager.minusLife();
+        HP--;
+        if(HP <= 0)
+        {
+            gameOver();
+            yield break;
+        }
+
+        isImmuned = true;
+        for (int i=0; i<20; i++)
         {
             setAlpha(0.5f);
             yield return new WaitForSeconds(0.1f);
@@ -90,6 +145,14 @@ public class Player : MonoBehaviour
             setAlpha(1f);
             yield return new WaitForSeconds(0.1f);
         }
+        isImmuned = false;
+    }
+
+    private void gameOver()
+    {
+        setAlpha(0f);
+        isImmuned = true;
+        uiManager.showGameOverScreen();
     }
 
     private void setAlpha(float a)
@@ -98,5 +161,17 @@ public class Player : MonoBehaviour
         Color c = sp.color;
         c.a = a;
         sp.color = c;
+    }
+
+    private void setPosInScreen()
+    {
+        Vector3 pos = Camera.main.WorldToViewportPoint(transform.position);
+
+        if (pos.x < 0f) pos.x = 0f;
+        if (pos.x > 1f) pos.x = 1f;
+        if (pos.y < 0f) pos.y = 0f;
+        if (pos.y > 1f) pos.y = 1f;
+
+        transform.position = Camera.main.ViewportToWorldPoint(pos);
     }
 }

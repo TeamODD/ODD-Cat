@@ -2,35 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Boolet;
+using Bullet;
+using static Icons.Icon;
 
 namespace Pattern
 {
     public class EasyPatternA : PatternBase
     {
-        private GameObject player;
-
-        // Start is called before the first frame update
         void Start()
         {
-            player = GameObject.FindWithTag("Player");
-            setSimpleArrowSpeed(10f);
+            base.init();
+            bulletManagerScript.setMushroomRSpeed(5f);
             StartCoroutine(runPattern());
         }
 
         private IEnumerator runPattern()
         {
             yield return new WaitForSeconds(0.5f);
-            float delay = 1f;
+            float delay = 0.7f;
             
             while(0 < delay)
             {
-                createBooletFromOutside(Camera.main.ViewportToWorldPoint(getRandomPosFromCamera()));
+                bulletManagerScript.createMushroomRBullet(Camera.main.ViewportToWorldPoint(getRandomPosFromCamera()), player.transform.position);
                 delay -= 0.02f;
                 yield return new WaitForSeconds(delay);
             }
 
             yield return new WaitForSeconds(5f);
+
+            GetComponentInParent<PatternManager>().removeDestroyedPattern();
+
+            yield return new WaitForSeconds(10f);
             Destroy(gameObject);
         }
 
@@ -45,23 +47,13 @@ namespace Pattern
             int r = Random.Range(0, 2);
             if(r == 0)
             {
-                v = new Vector3(arr[0], arr[1], 0);
+                v = new Vector3(arr[0], arr[1], 10);
             }
             else
             {
-                v = new Vector3(arr[1], arr[0], 0);
+                v = new Vector3(arr[1], arr[0], 10);
             }
             return v;
-        }
-
-        private void createBooletFromOutside(Vector3 v)
-        {
-            GameObject o = Instantiate(SimpleArrow) as GameObject;
-            o.transform.SetParent(gameObject.transform);
-            o.transform.position = v;
-            o.GetComponent<SimpleArrow>().setUnit(player.transform.position);
-            o.GetComponent<SimpleArrow>().setSpeed(getSimpleArrowSpeed());
-            o.SetActive(true);
         }
     }
 }
