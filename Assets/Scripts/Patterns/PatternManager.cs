@@ -32,7 +32,7 @@ namespace Pattern
 
         IEnumerator betaPattern()
         {
-            for (int i = 0; i < easyPatternList.Count; i++)
+            /*for (int i = 0; i < easyPatternList.Count; i++)
             {
                 GameObject p = Instantiate(easyPatternList[i]) as GameObject;
                 p.transform.SetParent(transform);
@@ -42,7 +42,7 @@ namespace Pattern
                 {
                     yield return new WaitForSeconds(1f);
                 }
-            }
+            }*/
 
 
             for (int i = 0; i < normalPatternList.Count; i++)

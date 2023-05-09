@@ -1,19 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] float speed;
 
+    public int HP;
+    public int score;
+
+    private UIManager uiManager;
     private float h, v;
     private bool isDash;
+    private bool isImmuned;
 
     // Start is called before the first frame update
     void Start()
     {
+        uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
+        HP = 3;
+        score = 0;
         isDash = false;
+        isImmuned = false;
+        StartCoroutine(countScore());
     }
 
     // Update is called once per frame
@@ -32,9 +43,19 @@ public class Player : MonoBehaviour
         }
     }
 
+    private IEnumerator countScore()
+    {
+        yield return new WaitForSeconds(1f);
+        while (0 < HP)
+        {
+            score += 10;
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
     void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.CompareTag("Bullet"))
+        if(!isImmuned && col.gameObject.CompareTag("Bullet"))
         {
             Destroy(col.gameObject);
             StartCoroutine(runHitEvent());
@@ -109,7 +130,9 @@ public class Player : MonoBehaviour
 
     private IEnumerator runHitEvent()
     {
-        for(int i=0; i<10; i++)
+        uiManager.minusLife();
+        isImmuned = true;
+        for (int i=0; i<20; i++)
         {
             setAlpha(0.5f);
             yield return new WaitForSeconds(0.1f);
@@ -117,6 +140,7 @@ public class Player : MonoBehaviour
             setAlpha(1f);
             yield return new WaitForSeconds(0.1f);
         }
+        isImmuned = false;
     }
 
     private void setAlpha(float a)

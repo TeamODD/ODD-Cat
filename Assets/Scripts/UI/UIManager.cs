@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 using static Icons.Icon;
 
 public class UIManager : MonoBehaviour
 {
 
+    [SerializeField] public GameObject lifePrefab;
+    [SerializeField] public TextMeshProUGUI score;
     [SerializeField] public GameObject background;
     [SerializeField] public GameObject play;
     [SerializeField] public GameObject pause;
@@ -18,10 +21,40 @@ public class UIManager : MonoBehaviour
     private GameObject icon;
     private IconType iconType;
     private Image backgroundImage;
+    private List<GameObject> lifeObjList;
+    private Player playerScript;
 
     void Start()
     {
+        playerScript = GameObject.FindWithTag("Player").GetComponent<Player>();
+        lifeObjList = new List<GameObject>();
         backgroundImage = background.GetComponent<Image>();
+
+        initLife();
+    }
+
+    void Update()
+    {
+        score.text = playerScript.score.ToString();
+    }
+
+    private void initLife()
+    {
+        Vector3 beginPos = new Vector3(-8f, 4.14f, 0);
+
+        for (int i = 0; i < playerScript.HP; i++)
+        {
+            GameObject o = Instantiate(lifePrefab) as GameObject;
+            o.transform.position = beginPos + new Vector3(i*1.2f, 0, 0);
+            o.transform.SetParent(transform.parent);
+            lifeObjList.Add(o);
+        }
+    }
+
+    public void minusLife()
+    {
+        Destroy(lifeObjList[lifeObjList.Count - 1]);
+        lifeObjList.RemoveAt(lifeObjList.Count - 1);
     }
 
     public void show(IconType i)

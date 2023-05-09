@@ -18,7 +18,7 @@ namespace Pattern
         private IEnumerator runPattern()
         {
             yield return new WaitForSeconds(1.5f);
-            setMushroomYSpeed(5f);
+            bulletManagerScript.setMushroomYSpeed(5f);
             float x, y;
 
             // first cycle
@@ -26,35 +26,35 @@ namespace Pattern
             for (x = 0.5f, y = 0f; 0 <= x; x -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createMushroomYBullet(v, new Vector3(0, 0, 0));
+                bulletManagerScript.createMushroomYBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.1f);
             }
 
             for (x = 0f, y = 0f; y <= 1f; y += 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createMushroomYBullet(v, new Vector3(0, 0, 0));
+                bulletManagerScript.createMushroomYBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.1f);
             }
 
             for (x = 0f, y = 1f; x <= 1; x += 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createMushroomYBullet(v, new Vector3(0, 0, 0));
+                bulletManagerScript.createMushroomYBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.1f);
             }
 
             for (x = 1f, y = 1f; 0f <= y; y -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createMushroomYBullet(v, new Vector3(0, 0, 0));
+                bulletManagerScript.createMushroomYBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.1f);
             }
 
             for (x = 1f, y = 0f; 0.5f <= x; x -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createMushroomYBullet(v, new Vector3(0, 0, 0));
+                bulletManagerScript.createMushroomYBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.1f);
             }
 
@@ -65,42 +65,42 @@ namespace Pattern
             for (x = 0.5f, y = 0f; 0 <= x; x -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createMushroomYBullet(v, new Vector3(0, 0, 0));
+                bulletManagerScript.createMushroomYBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 
             for (x = 0f, y = 0f; y <= 1f; y += 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createMushroomYBullet(v, new Vector3(0, 0, 0));
+                bulletManagerScript.createMushroomYBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 
             for (x = 0f, y = 1f; x <= 1; x += 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createMushroomYBullet(v, new Vector3(0, 0, 0));
+                bulletManagerScript.createMushroomYBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 
             for (x = 1f, y = 1f; 0f <= y; y -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createMushroomYBullet(v, new Vector3(0, 0, 0));
+                bulletManagerScript.createMushroomYBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 
             for (x = 1f, y = 0f; 0f <= x; x -= 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createMushroomYBullet(v, new Vector3(0, 0, 0));
+                bulletManagerScript.createMushroomYBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 
             for (x = 0f, y = 0f; y <= 1f; y += 0.1f)
             {
                 Vector3 v = Camera.main.ViewportToWorldPoint(new Vector3(x, y, 10));
-                createMushroomYBullet(v, new Vector3(0, 0, 0));
+                bulletManagerScript.createMushroomYBullet(v, new Vector3(0, 0, 0));
                 yield return new WaitForSeconds(0.05f);
             }
 

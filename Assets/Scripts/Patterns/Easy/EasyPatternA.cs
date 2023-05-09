@@ -12,18 +12,18 @@ namespace Pattern
         void Start()
         {
             base.init();
-            setMushroomRSpeed(5f);
+            bulletManagerScript.setMushroomRSpeed(5f);
             StartCoroutine(runPattern());
         }
 
         private IEnumerator runPattern()
         {
             yield return new WaitForSeconds(0.5f);
-            float delay = 1f;
+            float delay = 0.7f;
             
             while(0 < delay)
             {
-                createMushroomRBullet(Camera.main.ViewportToWorldPoint(getRandomPosFromCamera()), player.transform.position);
+                bulletManagerScript.createMushroomRBullet(Camera.main.ViewportToWorldPoint(getRandomPosFromCamera()), player.transform.position);
                 delay -= 0.02f;
                 yield return new WaitForSeconds(delay);
             }

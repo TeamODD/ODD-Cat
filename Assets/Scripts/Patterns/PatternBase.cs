@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Cainos.PixelArtTopDown_Basic;
-using Eyes;
 using Bullet;
 
 namespace Pattern
 {
     public class PatternBase : MonoBehaviour
     {
-        [SerializeField] public GameObject SimpleArrow;
+        /*[SerializeField] public GameObject SimpleArrow;
         [SerializeField] public GameObject TwoLayerCircle;
         [SerializeField] public GameObject Triangle;
         [SerializeField] public GameObject Circle;
         [SerializeField] public GameObject MushroomY;
         [SerializeField] public GameObject MushroomR;
-        [SerializeField] public GameObject Heart;
-
+        [SerializeField] public GameObject Heart;*/
 
         public GameObject player;
         public GameObject uiManager;
@@ -29,10 +27,10 @@ namespace Pattern
         public BulletManager bulletManagerScript;
         public PropsAltar altarScript;
 
-        private List<GameObject> triangleList;
+        /*private List<GameObject> triangleList;
         private List<GameObject> heartList;
         public readonly float[] heartSpeed = new float[34];
-        public readonly float[] heartDir = new float[34];
+        public readonly float[] heartDir = new float[34];*/
 
         public void init()
         {
@@ -45,13 +43,14 @@ namespace Pattern
             playerScript = player.GetComponent<Player>();
             uiManagerScript = uiManager.GetComponent<UIManager>();
             bulletManagerScript = bulletManager.GetComponent<BulletManager>();
+            altarScript = altar.GetComponent<PropsAltar>();
 
-            triangleList = new List<GameObject>();
+            /*triangleList = new List<GameObject>();
             heartList = new List<GameObject>();
-            heartDataInit();
+            heartDataInit();*/
         }
 
-        public void updateTriangleList()
+        /*public void updateTriangleList()
         {
             int i = 0;
             while (i < triangleList.Count)
@@ -248,6 +247,6 @@ namespace Pattern
             heartDir[32] = 277.17f;
             heartSpeed[33] = 147.85f;
             heartDir[33] = 270.05f;
-        }
+        }*/
     }
 }
