@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] public GameObject lifePrefab;
     [SerializeField] public TextMeshProUGUI score;
+    [SerializeField] public GameObject pauseScreen;
+    [SerializeField] public GameObject gameOverScreen;
     [SerializeField] public GameObject background;
     [SerializeField] public GameObject play;
     [SerializeField] public GameObject pause;
@@ -35,7 +37,11 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        score.text = playerScript.score.ToString();
+        score.text = GameMgr.GetIns._Score.ToString();
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseScreen.SetActive(true);
+        }
     }
 
     private void initLife()
@@ -117,5 +123,10 @@ public class UIManager : MonoBehaviour
         icon.SetActive(false);
         icon = null;
         iconType = IconType.none;
+    }
+
+    public void showGameOverScreen()
+    {
+        gameOverScreen.SetActive(true);
     }
 }

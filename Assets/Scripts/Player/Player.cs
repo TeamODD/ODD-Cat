@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     [SerializeField] float speed;
 
     public int HP;
-    public int score;
 
     private UIManager uiManager;
     private float h, v;
@@ -21,7 +20,6 @@ public class Player : MonoBehaviour
     {
         uiManager = GameObject.FindWithTag("UIManager").GetComponent<UIManager>();
         HP = 3;
-        score = 0;
         isDash = false;
         isImmuned = false;
         StartCoroutine(countScore());
@@ -48,7 +46,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
         while (0 < HP)
         {
-            score += 10;
+            GameMgr.GetIns._Score += 10;
             yield return new WaitForSeconds(0.5f);
         }
     }
@@ -131,6 +129,13 @@ public class Player : MonoBehaviour
     private IEnumerator runHitEvent()
     {
         uiManager.minusLife();
+        HP--;
+        if(HP <= 0)
+        {
+            gameOver();
+            yield break;
+        }
+
         isImmuned = true;
         for (int i=0; i<20; i++)
         {
@@ -141,6 +146,13 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
         isImmuned = false;
+    }
+
+    private void gameOver()
+    {
+        setAlpha(0f);
+        isImmuned = true;
+        uiManager.showGameOverScreen();
     }
 
     private void setAlpha(float a)
