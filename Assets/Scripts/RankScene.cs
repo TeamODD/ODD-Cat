@@ -46,10 +46,6 @@ public class RankScene : MonoBehaviour
 
     void OnClicked_btnExit()
     {
-        GameIntro gi = new GameIntro();
-        //gi.setMainBGM();
-        //gi.playMainBGM();
-        GameMgr.GetIns._mainSoundCnt = 1;
         SceneManager.LoadScene("MainScene");
     }
 }

@@ -15,35 +15,18 @@ public class GameIntro : MonoBehaviour
     [SerializeField] Image _teamodd = null;
     [SerializeField] Button _gameStartBtn = null;
     [SerializeField] Button _RankBtn = null;
-    [SerializeField] Text _titleEditer = null;
-
-    [SerializeField] GameObject _mainBGM = null;
-    //[SerializeField] GameObject _mainBGM = null;
-
-    private AudioSource _audioSource;
-
 
     bool _isIntro = false;
     // Start is called before the first frame update
     void Start()
     {
-        setMainBGM();
-        DontDestroyOnLoad(_mainBGM);
-        //_audioSource = _mainBGM.GetComponent<AudioSource>();
-        //_audioSource = _mainBGM.GetComponent<AudioSource>();
-        if(GameMgr.GetIns._mainSoundCnt == 1)
-        {
-            playMainBGM();
-        }
-        if (!GameMgr.GetIns._isFirst)
+        if(!GameMgr.GetIns._isFirst)
         {
             _game.SetActive(false);
             _btnStart.onClick.AddListener(onClicked_btnStart); // 인트로 버튼
-            GameMgr.GetIns._mainSoundCnt = 0;
         }
         else
         {
-            _titleEditer.gameObject.SetActive(false);
             _btnStart.gameObject.SetActive(false);
             _panel.gameObject.SetActive(false);
             _teamodd.gameObject.SetActive(true);
@@ -62,7 +45,6 @@ public class GameIntro : MonoBehaviour
             // 메인화면
             _teamodd.gameObject.SetActive(true);
             _RankBtn.gameObject.SetActive(true);
-            _titleEditer.gameObject.SetActive(true);
             _gameStartBtn.gameObject.SetActive(true);
         }
     }
@@ -70,15 +52,15 @@ public class GameIntro : MonoBehaviour
     public void onClicked_RankBtn()
     {
         //GameMgr.GetIns.LoadData();
-        stopMainBGM();
         SceneManager.LoadScene("RankingScene");
     }
 
     public void onClicked_btnStart()
     {
         //Debug.Log("dd");
+
         _btnStart.GetComponent<Image>().sprite = _changeSprite;
-        playMainBGM();
+        
         StartCoroutine(introFadeOut(3.0f));
 
         //_btnStart.interactable = false;
@@ -86,7 +68,6 @@ public class GameIntro : MonoBehaviour
 
     public void onClicked_gameStartBtn()
     {
-        stopMainBGM();
         SceneManager.LoadScene("GameScene");
     }
 
@@ -122,22 +103,4 @@ public class GameIntro : MonoBehaviour
         _isIntro = true;
     }
 
-    public void setMainBGM()
-    {
-        
-        _audioSource = _mainBGM.GetComponent<AudioSource>();
-        //_audioSource.Play();
-    }
-    public void playMainBGM()
-    {
-        //_audioSource = _mainBGM.GetComponent<AudioSource>();
-
-        _audioSource.Play();
-    }
-    public void stopMainBGM()
-    {
-        //_audioSource = _mainBGM.GetComponent<AudioSource>();
-
-        _audioSource.Stop();
-    }
 }
