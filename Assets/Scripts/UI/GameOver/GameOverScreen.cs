@@ -7,6 +7,12 @@ using TMPro;
 public class GameOverScreen : MonoBehaviour
 {
     [SerializeField] TMP_InputField nickname;
+    [SerializeField] TextMeshProUGUI score;
+
+    void OnEnable()
+    {
+        score.text = "Á¡¼ö : " + (GameMgr.GetIns._Score).ToString();
+    }
 
     // Start is called before the first frame update
     public void onSave()

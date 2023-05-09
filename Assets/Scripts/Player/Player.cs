@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] AudioClip dashSound;
+    [SerializeField] AudioClip hitSound;
+    [SerializeField] AudioClip gameOverSound;
     [SerializeField] float speed;
 
     public int HP;
@@ -14,6 +17,7 @@ public class Player : MonoBehaviour
     private float h, v;
     private bool isDash;
     private bool isImmuned;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,7 @@ public class Player : MonoBehaviour
         HP = 3;
         isDash = false;
         isImmuned = false;
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(countScore());
     }
 
@@ -43,6 +48,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator countScore()
     {
+        yield return new WaitForSeconds(3f);
         yield return new WaitForSeconds(1f);
         while (0 < HP)
         {
@@ -97,6 +103,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator dash(float h, float v)
     {
+        audioSource.clip = dashSound;
+        audioSource.Play();
         if (!isMoveKeyDown()) yield break;
         isDash = true;
         Vector3 unit = new Vector3(h, v, 0).normalized;
@@ -128,6 +136,8 @@ public class Player : MonoBehaviour
 
     private IEnumerator runHitEvent()
     {
+        audioSource.clip = hitSound;
+        audioSource.Play();
         uiManager.minusLife();
         HP--;
         if(HP <= 0)
@@ -150,6 +160,8 @@ public class Player : MonoBehaviour
 
     private void gameOver()
     {
+        audioSource.clip = gameOverSound;
+        audioSource.Play();
         setAlpha(0f);
         isImmuned = true;
         uiManager.showGameOverScreen();
