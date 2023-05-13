@@ -31,6 +31,8 @@ public class RankScene : MonoBehaviour
             PlayerData data = GameMgr.GetIns._listData[i];
             _txtNums[0].text += string.Format("No.{0} {1} {2}Á¡\n", i + 1, data._Nickname, data._Score);
         }
+        GameMgr.GetIns._Nickname = "";
+        GameMgr.GetIns._Score = 0;
         /*
         int count = 0;
         if (GameMgr.GetIns._listData.Count < 3) count = GameMgr.GetIns._listData.Count;

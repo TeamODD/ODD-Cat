@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip dashSound;
     [SerializeField] AudioClip hitSound;
     [SerializeField] AudioClip gameOverSound;
+    [SerializeField] GameObject guide;
     [SerializeField] float speed;
 
     public int HP;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
         isImmuned = false;
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(countScore());
+        StartCoroutine(showGuide());
     }
 
     // Update is called once per frame
@@ -44,6 +46,21 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(dash(h, v));
         }
+    }
+
+    private IEnumerator showGuide()
+    {
+        float time = 0;
+        guide.SetActive(true);
+        while (true)
+        {
+            guide.transform.position = transform.position + new Vector3(0.2f, -0.2f, 0);
+            time += Time.deltaTime;
+            if (5f < time)
+                break;
+            yield return new WaitForEndOfFrame();
+        }
+        guide.SetActive(false);
     }
 
     private IEnumerator countScore()
