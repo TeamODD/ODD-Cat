@@ -37,6 +37,8 @@ public class GameIntro : MonoBehaviour
         _gameStartBtn.onClick.AddListener(onClicked_gameStartBtn); // 게임 시작 버튼
         _RankBtn.onClick.AddListener(onClicked_RankBtn); // 게임 시작 버튼*/
         GameMgr.GetIns._isFirst = false;
+        GameMgr.GetIns._Nickname = "";
+        GameMgr.GetIns._Score = 0;
     }
 
     // Update is called once per frame

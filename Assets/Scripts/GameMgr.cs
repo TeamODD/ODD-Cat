@@ -49,7 +49,7 @@ public class GameMgr
         BinaryWriter bw = new BinaryWriter(fs);
 
         bw.Write(_listData.Count);
-        for (int i = 0; i < _listData.Count; ++i)
+        for (int i = 0; i < _listData.Count; i++)
         {
             bw.Write(_listData[i]._Nickname);
             bw.Write(_listData[i]._Score);
@@ -69,7 +69,7 @@ public class GameMgr
             BinaryReader br = new BinaryReader(fs);
 
             int count = br.ReadInt32();
-            for (int i = 0; i < count; ++i)
+            for (int i = 0; i < count; i++)
             {
                 PlayerData data = new PlayerData(br.ReadString(), br.ReadInt32());
                 _listData.Add(data);
@@ -85,18 +85,6 @@ public class GameMgr
         {
             Debug.Log(e);
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     //public void 
